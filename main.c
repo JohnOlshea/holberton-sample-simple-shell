@@ -42,10 +42,8 @@ int main(void)
 		}
 
 
-		/**
-		 * for (i = 0; i < (n_spaces + 1); ++i)
-		 * printf("res[%d] = %s\n", i, c_array[i]);
-		 */
+		for (i = 0; i < (n_spaces + 1); ++i)
+			printf("res[%d] = %s\n", i, c_array[i]);
 
 
 		n_spaces = 0;
