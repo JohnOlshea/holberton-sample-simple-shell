@@ -43,6 +43,8 @@ int main(void)
 			c_array[n_spaces] = strtok(NULL, " ");
 		}
 
+		if (n_spaces <= 0)
+			continue;
 
 		for (i = 0; i < (n_spaces + 1); ++i)
 			printf("res[%d] = %s\n", i, c_array[i]);
