@@ -14,8 +14,5 @@
 
 int _putchar(char c);
 int print_string(char *str);
-char *get_full_path(char *path, char *argv);
-int check_built_in(char **argv);
-int string_to_array(char *string, char ***result_array, size_t *array_size);
 
 #endif
