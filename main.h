@@ -16,9 +16,6 @@
 
 int _putchar(char c);
 int print_string(char *str);
-
-void tokenize_input(char *input, char **token_array, int *num_tokens);
-
-void process_input(char **token_array, int num_tokens);
+char *get_full_path(char *path, char *argv);
 
 #endif

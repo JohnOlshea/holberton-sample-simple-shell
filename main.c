@@ -19,6 +19,8 @@ int main(void)
 	pid_t child_pid;
 	int status;
 
+	char *full_path = NULL;
+
 	while (1)
 	{
 		if (isatty(0))
@@ -46,6 +48,35 @@ int main(void)
 			printf("res[%d] = %s\n", i, c_array[i]);
 
 		n_spaces = 0;
+
+
+		if (c_array[0][0] == '/')
+		{
+			if (!access(c_array[0], X_OK) == 0)
+			{
+				print_string("command not found\n");
+				continue;
+			}
+		}
+		else
+		{
+
+			char *sys_path = getenv("PATH");
+
+			full_path = get_full_path(sys_path, c_array[0]);
+
+			if (full_path != NULL)
+			{
+				c_array[0] = full_path;
+				print_string(full_path);
+				print_string("\n");
+			}
+			else
+			{
+				print_string("command not found\n");
+				continue;
+			}
+		}
 
 		child_pid = fork();
 		if (child_pid == -1)
