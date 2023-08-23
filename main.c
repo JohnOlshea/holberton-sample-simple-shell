@@ -73,7 +73,12 @@ int main(void)
 			}
 			else
 			{
-				print_string("command not found\n");
+				int res = check_built_in(c_array);
+
+				if (res != 0)
+				{
+					print_string("command not found\n");
+				}
 				continue;
 			}
 		}
@@ -96,6 +101,7 @@ int main(void)
 		}
 		else
 		{
+
 			wait(&status);
 		}
 	}

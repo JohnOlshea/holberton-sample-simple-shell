@@ -17,5 +17,6 @@
 int _putchar(char c);
 int print_string(char *str);
 char *get_full_path(char *path, char *argv);
+int check_built_in(char **arg);
 
 #endif
