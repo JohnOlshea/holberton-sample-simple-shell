@@ -50,7 +50,7 @@ int main(void)
 		child_pid = fork();
 		if (child_pid == -1)
 		{
-			print_string("Error:");
+			print_string("No such file or directory\n");
 			free(string);
 			exit(0);
 		}
