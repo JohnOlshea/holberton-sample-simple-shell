@@ -68,8 +68,6 @@ int main(void)
 			if (full_path != NULL)
 			{
 				c_array[0] = full_path;
-				print_string(full_path);
-				print_string("\n");
 			}
 			else
 			{
