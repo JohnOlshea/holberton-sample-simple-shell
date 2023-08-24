@@ -10,7 +10,7 @@ int check_built_in(char **arg)
 {
 	if (strcmp(arg[0], "exit") == 0)
 	{
-		exit(0);
+		exit(2);
 	}
 	else if (strcmp(arg[0], "cd") == 0)
 	{
