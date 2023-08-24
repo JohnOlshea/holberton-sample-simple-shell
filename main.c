@@ -27,7 +27,8 @@ int main(void)
 		chars_read = getline(&string, &size, stdin);
 		if (chars_read < 0)
 		{
-			print_string("\n");
+			if (isatty(0))
+				print_string("\n");
 			free(string);
 			exit(0);
 		}
