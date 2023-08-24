@@ -14,8 +14,6 @@ int main(void)
 	char *c_array[11];
 	int n_spaces = 0;
 
-	int i;
-
 	pid_t child_pid;
 	int status;
 
@@ -29,6 +27,7 @@ int main(void)
 		chars_read = getline(&string, &size, stdin);
 		if (chars_read < 0)
 		{
+			print_string("\n");
 			free(string);
 			exit(0);
 		}
@@ -46,21 +45,15 @@ int main(void)
 		if (n_spaces <= 0)
 			continue;
 
-		for (i = 0; i < (n_spaces + 1); ++i)
-			printf("res[%d] = %s\n", i, c_array[i]);
+		/**
+		 * for (i = 0; i < (n_spaces + 1); ++i)
+		 * printf("res[%d] = %s\n", i, c_array[i]);
+		 */
 
 		n_spaces = 0;
 
 
-		if (c_array[0][0] == '/')
-		{
-			if (!access(c_array[0], X_OK) == 0)
-			{
-				print_string("command not found\n");
-				continue;
-			}
-		}
-		else
+		if (!access(c_array[0], X_OK) == 0)
 		{
 
 			char *sys_path = getenv("PATH");
