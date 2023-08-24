@@ -12,6 +12,20 @@ int check_built_in(char **arg)
 	{
 		exit(2);
 	}
+
+else if (strcmp(arg[0], "env") == 0)
+{
+	extern char **environ;
+	char **env = environ;
+
+	while (*env != NULL)
+	{
+		printf("%s\n", *env);
+		env++;
+	}
+	return 0;
+}
+
 	else if (strcmp(arg[0], "cd") == 0)
 	{
 		if (arg[1] == NULL)

@@ -59,7 +59,8 @@ int main(void)
 
 			char *sys_path = getenv("PATH");
 
-			full_path = get_full_path(sys_path, c_array[0]);
+			if (strcmp(c_array[0], "env") != 0)
+				full_path = get_full_path(sys_path, c_array[0]);
 
 			if (full_path != NULL)
 			{
