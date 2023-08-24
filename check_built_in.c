@@ -10,7 +10,6 @@ int check_built_in(char **arg)
 {
 	if (strcmp(arg[0], "exit") == 0)
 	{
-		print_string("Exiting...\n");
 		exit(0);
 	}
 	else if (strcmp(arg[0], "cd") == 0)
