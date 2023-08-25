@@ -31,7 +31,7 @@ int main(void)
 			if (isatty(0))
 				print_string("\n");
 			free(string);
-			exit(2);
+			exit(0);
 		}
 
 		if (string[chars_read - 1] == '\n')
@@ -112,8 +112,7 @@ int main(void)
 				perror("say what");*/
 				print_string("No such file or directory\n");
 			}
-			exit(2);
-			return (33);
+			return (0);
 		}
 		else
 		{
@@ -128,5 +127,5 @@ int main(void)
 
 	free(string);
 	/*return (99);*/
-	return (errno);
+	return (0);
 }
