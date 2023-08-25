@@ -18,6 +18,7 @@ int main(void)
 	int status;
 
 	char *full_path = NULL;
+	/*int mode = isatty(0);*/
 
 	while (1)
 	{
@@ -30,7 +31,7 @@ int main(void)
 			if (isatty(0))
 				print_string("\n");
 			free(string);
-			exit(0);
+			exit(2);
 		}
 
 		if (string[chars_read - 1] == '\n')
@@ -58,6 +59,7 @@ int main(void)
 		{
 
 			char *sys_path = getenv("PATH");
+			/*char *sys_path = "";*/
 
 			if (strcmp(c_array[0], "env") != 0)
 				full_path = get_full_path(sys_path, c_array[0]);
@@ -72,11 +74,25 @@ int main(void)
 
 				if (res != 0)
 				{
+					/**
+					 * errno = 404;
+					 * printf("%d\n", errno);
+					 */
+					
+					if (!isatty(0))
+					{
+						print_string_err("./hsh: 1: ");
+						print_string_err(c_array[0]);
+						print_string_err(": not found\n");
+						exit(127);
+					}
+
 					print_string("command not found\n");
 				}
 				continue;
 			}
 		}
+
 
 		child_pid = fork();
 		if (child_pid == -1)
@@ -88,19 +104,29 @@ int main(void)
 
 		if (child_pid == 0)
 		{
+
+			/*printf("before %d\n", errno);*/
 			if (execve(c_array[0], c_array, NULL) == -1)
 			{
+				/*exit(222);
+				perror("say what");*/
 				print_string("No such file or directory\n");
 			}
-			return (0);
+			exit(2);
+			return (33);
 		}
 		else
 		{
-
+			/**
+			 * errno = 127;
+			 * printf("after %d\n", errno);
+			 * printf("In parent\n");
+			 */
 			wait(&status);
 		}
 	}
 
 	free(string);
-	return (0);
+	/*return (99);*/
+	return (errno);
 }

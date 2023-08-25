@@ -16,15 +16,13 @@ int check_built_in(char **arg)
 	 * */
 	if (strcmp(arg[0], "exit") == 0)
 	{
-		if (arg[1] != NULL)
+		/*printf("%d\n", errno);*/
+		/*if (errno != 0)
 		{
-			int exit_status = atoi(arg[1]);
-			exit(exit_status);
-		}
-		else
-		{
-			exit(0);
-		}
+			exit (5);
+		}*/
+		exit (0);
+		/*exit (errno);*/
 	}
 
 else if (strcmp(arg[0], "env") == 0)
@@ -42,6 +40,7 @@ else if (strcmp(arg[0], "env") == 0)
 
 	else if (strcmp(arg[0], "cd") == 0)
 	{
+		printf("%d\n", errno);
 		if (arg[1] == NULL)
 		{
 			if (chdir(getenv("HOME")) != 0)
