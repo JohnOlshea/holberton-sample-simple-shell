@@ -18,6 +18,7 @@ int main(void)
 	int status;
 
 	char *full_path = NULL;
+	setenv("PATH1", "/default/path", 1);
 	/*int mode = isatty(0);*/
 
 	while (1)
@@ -58,11 +59,21 @@ int main(void)
 		if (!access(c_array[0], X_OK) == 0)
 		{
 
-			char *sys_path = getenv("PATH");
+			char *sys_path = getenv("PATH1");
 			/*char *sys_path = "";*/
 
-			if (strcmp(c_array[0], "env") != 0)
-				full_path = get_full_path(sys_path, c_array[0]);
+			if (sys_path == NULL)
+			{
+				sys_path = "/default/path";
+			}
+			else
+			{
+				if (sys_path)
+				{
+					if (strcmp(c_array[0], "env") != 0)
+						full_path = get_full_path(sys_path, c_array[0]);
+				}
+			}
 
 			if (full_path != NULL)
 			{
