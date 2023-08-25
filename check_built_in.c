@@ -8,9 +8,23 @@
  */
 int check_built_in(char **arg)
 {
+	/**
+	 * if (strcmp(arg[0], "exit") == 0)
+	 * {
+	 * exit(0);
+	 * }
+	 * */
 	if (strcmp(arg[0], "exit") == 0)
 	{
-		exit(0);
+		if (arg[1] != NULL)
+		{
+			int exit_status = atoi(arg[1]);
+			exit(exit_status);
+		}
+		else
+		{
+			exit(0);
+		}
 	}
 
 else if (strcmp(arg[0], "env") == 0)
